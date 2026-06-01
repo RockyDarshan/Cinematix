@@ -1,5 +1,6 @@
 import Link from "next/link";
 import MovieCard from "../../../components/MovieCard";
+import Image from "next/image";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 
@@ -55,7 +56,7 @@ export default async function MoviePage({ params }) {
           <p className="text-white text-4xl mb-4">Movie not found</p>
           <Link
             href="/"
-            className="px-6 py-3 bg-linear-to-r from-[#FCD34D] to-[#F59E0B] text-black font-bold rounded-lg"
+            className="px-6 py-3 bg-linear-to-r from-[#FCD34D] to-[#F59E0B] text-black font-bold rounded-lg bg-white"
           >
             Back to Home
           </Link>
@@ -97,7 +98,7 @@ export default async function MoviePage({ params }) {
           className="inline-flex items-center gap-2 text-light-200 hover:text-white transition-colors group"
         >
           <svg
-            className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
+            className="w-8 h-8 group-hover:-translate-x-1 transition-transform bg-white "
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -170,7 +171,7 @@ export default async function MoviePage({ params }) {
             {/* Meta pills */}
             <div className="flex flex-wrap items-center gap-2 justify-center md:justify-start text-sm">
               <div className="flex items-center gap-1.5 bg-yellow-400/10 border border-yellow-400/30 px-3 py-1.5 rounded-full">
-                <img src="/star.svg" alt="Rating" className="w-4 h-4" />
+                <Image src="/star.svg" alt="Rating" width={16} height={16} />
                 <span className="text-yellow-300 font-bold">
                   {movie.vote_average?.toFixed(1) || "N/A"}
                 </span>

@@ -153,9 +153,7 @@ const MainApp = () => {
           <section className="trending">
             <div className="flex justify-between items-center mb-1.5">
               <h2>Your Trending Searches</h2>
-              <p className="text-gray-100 text-sm">
-                Based on your search history
-              </p>
+              <p className="text-white text-sm">Based on your search history</p>
             </div>
 
             {trendingMovies.length > 0 ? (
