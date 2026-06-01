@@ -1,8 +1,10 @@
+import Image from "next/image";
+
 const Search = ({ searchTerm, setSearchTerm }) => {
   return (
     <div className="search">
       <div>
-        <img src="/search.svg" alt="Search Icon" />
+        <Image src="/search.svg" alt="Search Icon" width={20} height={20} />
         <input
           type="text"
           placeholder="Search for movies..."

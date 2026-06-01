@@ -118,9 +118,11 @@ export default async function MoviePage({ params }) {
       <div className="relative">
         {movie.backdrop_path && (
           <div className="absolute inset-0 h-130 overflow-hidden">
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
               alt={movie.title}
+              width={500}
+              height={400}
               className="w-full h-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-linear-to-b from-primary/30 via-primary/75 to-primary" />
@@ -131,13 +133,15 @@ export default async function MoviePage({ params }) {
         <div className="relative max-w-7xl mx-auto px-5 pt-14 pb-10 flex flex-col md:flex-row gap-8 md:gap-12 items-end">
           {/* Poster */}
           <div className="shrink-0 mx-auto md:mx-0">
-            <img
+            <Image
               src={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : "/no-movie.png"
+                  : "/H4.png"
               }
               alt={movie.title}
+              width={256}
+              height={384}
               className="w-52 md:w-64 rounded-2xl shadow-2xl shadow-black/70 ring-1 ring-white/10"
             />
           </div>
@@ -297,13 +301,15 @@ export default async function MoviePage({ params }) {
                 className="shrink-0 w-28 text-center"
               >
                 <div className="w-20 h-20 mx-auto rounded-full overflow-hidden bg-dark-100 border-2 border-light-100/10 mb-2">
-                  <img
+                  <Image
                     src={
                       actor.profile_path
                         ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-                        : "/no-movie.png"
+                        : "/H4.png"
                     }
                     alt={actor.name}
+                    width={80}
+                    height={80}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -331,9 +337,11 @@ export default async function MoviePage({ params }) {
                   key={company.id}
                   className="flex items-center gap-2 bg-white/5 border border-light-100/10 rounded-xl px-4 py-2"
                 >
-                  <img
+                  <Image
                     src={`https://image.tmdb.org/t/p/w92${company.logo_path}`}
                     alt={company.name}
+                    width={20}
+                    height={20}
                     className="h-5 object-contain brightness-200 invert"
                   />
                   <span className="text-light-200 text-sm">{company.name}</span>

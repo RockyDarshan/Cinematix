@@ -9,6 +9,7 @@ import UserMenu from "./UserMenu";
 import { useDebounce } from "react-use";
 import { useAuth } from "../contexts/AuthContext";
 import { getTopSearches, updateSearchCount } from "../appwrite";
+import Image from "next/image";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = process.env.NEXT_PUBLIC_TMDM_API_KEY;
@@ -141,7 +142,13 @@ const MainApp = () => {
         </nav>
 
         <header>
-          <img src="/hero-bg.png" alt="Hero Banner" className="transparent" />
+          <Image
+            src="/hero-bg.png"
+            alt="Hero Banner"
+            width={500}
+            height={400}
+            className="transparent"
+          />
           <h1>
             Find <span className="text-gradient">Movies</span> You'll Enjoy
             Without the Hassle
@@ -161,11 +168,13 @@ const MainApp = () => {
                 {trendingMovies.map((movie, index) => (
                   <li key={movie.$id}>
                     <p>{index + 1}</p>
-                    <img
+                    <Image
                       src={movie.poster_url}
                       alt={movie.searchTerm}
+                      width={100}
+                      height={150}
                       onError={(e) => {
-                        e.target.src = "/no-movie.png";
+                        e.target.src = "/H4.png";
                       }}
                     />
                   </li>

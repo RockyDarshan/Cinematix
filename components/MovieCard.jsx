@@ -18,14 +18,16 @@ const MovieCard = ({
       href={`/movie/${id}`}
       className="movie-card block group cursor-pointer hover:scale-105 transition-transform duration-200"
     >
-      <img
+      <Image
         src={
           poster_path
             ? `https://image.tmdb.org/t/p/w500${poster_path}`
-            : "/no-movie.png"
+            : "/H4.png"
         }
         alt={title}
-        className="group-hover:brightness-90 transition-all duration-200"
+        width={500}
+        height={750}
+        className="group-hover:brightness-90 transition-all duration-200 rounded-lg h-auto w-full"
       />
       <div className="mt-4">
         <h3>{title}</h3>
