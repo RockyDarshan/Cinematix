@@ -14,22 +14,32 @@ const getApiOptions = () => ({
 });
 
 async function getMovieDetails(id) {
-  const res = await fetch(
-    `${API_BASE_URL}/movie/${id}?append_to_response=credits,videos`,
-    getApiOptions(),
-  );
-  if (!res.ok) return null;
-  return res.json();
+  try {
+    const res = await fetch(
+      `${API_BASE_URL}/movie/${id}?append_to_response=credits,videos`,
+      getApiOptions(),
+    );
+    if (!res.ok) return null;
+    return res.json();
+  } catch (error) {
+    console.log("Movie details fetch failed:", error.message);
+    return null;
+  }
 }
 
 async function getSimilarMovies(id) {
-  const res = await fetch(
-    `${API_BASE_URL}/movie/${id}/similar?page=1`,
-    getApiOptions(),
-  );
-  if (!res.ok) return [];
-  const data = await res.json();
-  return data.results?.slice(0, 8) || [];
+  try {
+    const res = await fetch(
+      `${API_BASE_URL}/movie/${id}/similar?page=1`,
+      getApiOptions(),
+    );
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.results?.slice(0, 8) || [];
+  } catch (error) {
+    console.log("Similar movies fetch failed:", error.message);
+    return [];
+  }
 }
 
 export async function generateMetadata({ params }) {
