@@ -16,6 +16,7 @@ const MovieCard = ({
   return (
     <Link
       href={`/movie/${id}`}
+      prefetch={true}
       className="movie-card block group cursor-pointer hover:scale-105 transition-transform duration-200"
     >
       <Image
