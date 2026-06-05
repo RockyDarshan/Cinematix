@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Search from "./Search";
 import Spinner from "./Spinner";
 import MovieCard from "./MovieCard";
@@ -12,15 +12,6 @@ import { getTopSearches, updateSearchCount } from "../appwrite";
 import Image from "next/image";
 
 const API_BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = process.env.NEXT_PUBLIC_TMDM_API_KEY;
-
-const API_OPTIONS = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${API_KEY}`,
-  },
-};
 
 const MainApp = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,6 +22,8 @@ const MainApp = () => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
   const [showAuthModal, setShowAuthModal] = useState(false);
 
+  const skipMovieFetch = useRef(false);
+
   const { loading: authLoading, isAuthenticated } = useAuth();
 
   useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm]);
@@ -38,6 +31,14 @@ const MainApp = () => {
   const fetchMovies = async (query = "") => {
     setLoading(true);
     setErrorMessage("");
+
+    const API_OPTIONS = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_TMDM_API_KEY}`,
+      },
+    };
 
     try {
       const endpoint = query
@@ -84,6 +85,10 @@ const MainApp = () => {
   };
 
   useEffect(() => {
+    if (skipMovieFetch.current) {
+      skipMovieFetch.current = false;
+      return;
+    }
     fetchMovies(debouncedSearchTerm);
   }, [debouncedSearchTerm]);
 
@@ -109,16 +114,14 @@ const MainApp = () => {
   return (
     <main>
       <div className="pattern" />
-
       <div className="wrapper mt-1">
         {/* Navigation Bar */}
         <nav className="flex justify-between items-center mb-4 mt-3">
           <div className="flex items-center space-x-4 ml-6">
-            <h3 className="text-amber-400 font-stretch-50% font-sans font-bold text-4xl">
+            <h3 className="text-amber-400 font-sans font-bold text-4xl">
               🍿MovieVerse
             </h3>
           </div>
-
           <div className="flex items-center space-x-4">
             {isAuthenticated ? (
               <UserMenu />
@@ -142,18 +145,16 @@ const MainApp = () => {
         </nav>
 
         <header>
-          <Image
-            src="/hero-bg.png"
-            alt="Hero Banner"
-            width={500}
-            height={400}
-            className="transparent"
-          />
+          {/* <img src="/hero-bg.png" alt="Hero Banner" /> */}
           <h1>
             Find <span className="text-gradient">Movies</span> You'll Enjoy
             Without the Hassle
           </h1>
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Search
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            skipMovieFetch={skipMovieFetch}
+          />
         </header>
 
         {isAuthenticated && (
@@ -164,19 +165,16 @@ const MainApp = () => {
                 Based on your search history
               </p>
             </div>
-
             {trendingMovies.length > 0 ? (
               <ul>
                 {trendingMovies.map((movie, index) => (
                   <li key={movie.$id}>
                     <p>{index + 1}</p>
-                    <Image
+                    <img
                       src={movie.poster_url}
                       alt={movie.searchTerm}
-                      width={100}
-                      height={150}
                       onError={(e) => {
-                        e.target.src = "/H4.png";
+                        e.target.src = "/hero-bg.png";
                       }}
                     />
                   </li>
@@ -211,7 +209,6 @@ const MainApp = () => {
 
         <section className="all-movies mt-1.5">
           <h2>Popular Movies</h2>
-
           {loading ? (
             <Spinner />
           ) : errorMessage ? (

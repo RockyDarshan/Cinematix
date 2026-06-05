@@ -20,7 +20,7 @@
     background: #0d0900;
   }
   h1 {
-    @apply mx-auto max-w-4xl text-center text-5xl font-bold leading-tight tracking-[-1%] text-white sm:text-[64px] sm:leading-[76px];
+    @apply mx-auto max-w-4xl text-center text-5xl font-bold leading-tight tracking-[-1%] text-white sm:text-[64px] sm:leading-19;
   }
   h2 {
     @apply text-2xl font-bold text-white sm:text-3xl;
@@ -44,22 +44,22 @@
     @apply px-5 py-12 xs:p-10 max-w-7xl mx-auto flex flex-col relative z-10;
   }
   .trending {
-    @apply mt-20;
-    & ul {
-      @apply flex flex-row overflow-y-auto gap-5 -mt-10 w-full hide-scrollbar;
-    }
-    & ul li {
-      @apply min-w-[230px] flex flex-row items-center;
-    }
-    & ul li p {
-      @apply fancy-text mt-[22px] text-nowrap;
-    }
-    & ul li img {
-      @apply w-[127px] h-[163px] rounded-lg object-cover -ml-3.5;
-    }
+  @apply mt-20;
+  & > ul {
+    @apply flex flex-row overflow-y-auto gap-5 -mt-10 w-full hide-scrollbar;
   }
+  & > ul > li {
+    @apply min-w-57.5 flex flex-row items-center;
+  }
+  & > ul > li > p {
+    @apply fancy-text mt-5.5 text-nowrap;
+  }
+  & > ul > li > img {
+    @apply w-31.75 h-40.75 rounded-lg object-cover -ml-3.5;
+  }
+}
   .search {
-    @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-3xl mx-auto;
+    @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-3xl mx-auto relative z-50;
     & div {
       @apply relative flex items-center;
     }

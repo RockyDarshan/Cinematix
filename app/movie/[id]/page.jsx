@@ -10,7 +10,6 @@ const getApiOptions = () => ({
     accept: "application/json",
     Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
   },
-  next: { revalidate: 3600 },
 });
 
 async function getMovieDetails(id) {
@@ -66,7 +65,7 @@ export default async function MoviePage({ params }) {
           <p className="text-white text-4xl mb-4">Movie not found</p>
           <Link
             href="/"
-            className="px-6 py-3 bg-linear-to-r from-[#FCD34D] to-[#F59E0B] text-black font-bold rounded-lg bg-white"
+            className="px-6 py-3 bg-linear-to-r from-[#FCD34D] to-[#F59E0B] text-black font-bold rounded-lg"
           >
             Back to Home
           </Link>
@@ -101,14 +100,14 @@ export default async function MoviePage({ params }) {
 
   return (
     <main className="min-h-screen bg-primary">
-      {/* ── Back Button ── */}
+      {/* Back Button */}
       <div className="max-w-7xl mx-auto px-5 pt-6 pb-2">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-light-200 hover:text-white transition-colors group"
         >
           <svg
-            className="w-8 h-8 group-hover:-translate-x-1 transition-transform bg-white "
+            className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -124,22 +123,20 @@ export default async function MoviePage({ params }) {
         </Link>
       </div>
 
-      {/* ── Backdrop Hero ── */}
+      {/* Backdrop Hero */}
       <div className="relative">
         {movie.backdrop_path && (
           <div className="absolute inset-0 h-130 overflow-hidden">
-            <Image
+            <img
               src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
               alt={movie.title}
-              width={500}
-              height={400}
               className="w-full h-full object-cover object-top"
             />
             <div className="absolute inset-0 bg-linear-to-b from-primary/30 via-primary/75 to-primary" />
           </div>
         )}
 
-        {/* ── Poster + Info ── */}
+        {/* Poster + Info */}
         <div className="relative max-w-7xl mx-auto px-5 pt-14 pb-10 flex flex-col md:flex-row gap-8 md:gap-12 items-end">
           {/* Poster */}
           <div className="shrink-0 mx-auto md:mx-0">
@@ -147,7 +144,7 @@ export default async function MoviePage({ params }) {
               src={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : "/H4.png"
+                  : "/hero-bg.png"
               }
               alt={movie.title}
               width={256}
@@ -171,7 +168,7 @@ export default async function MoviePage({ params }) {
             </div>
 
             {/* Title */}
-            <h1 className="text-left! text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight text-left">
               {movie.title}
             </h1>
 
@@ -300,7 +297,7 @@ export default async function MoviePage({ params }) {
         </div>
       </div>
 
-      {/* ── Cast ── */}
+      {/* Cast */}
       {topCast.length > 0 && (
         <section className="max-w-7xl mx-auto px-5 py-10 border-t border-light-100/10">
           <h2 className="text-2xl font-bold text-white mb-6">Top Cast</h2>
@@ -311,15 +308,13 @@ export default async function MoviePage({ params }) {
                 className="shrink-0 w-28 text-center"
               >
                 <div className="w-20 h-20 mx-auto rounded-full overflow-hidden bg-dark-100 border-2 border-light-100/10 mb-2">
-                  <Image
+                  <img
                     src={
                       actor.profile_path
                         ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-                        : "/H4.png"
+                        : "/hero-bg.png"
                     }
                     alt={actor.name}
-                    width={80}
-                    height={80}
                     className="w-full h-full object-cover"
                   />
                 </div>
@@ -335,7 +330,7 @@ export default async function MoviePage({ params }) {
         </section>
       )}
 
-      {/* ── Production Companies ── */}
+      {/* Production Companies */}
       {movie.production_companies?.some((c) => c.logo_path) && (
         <section className="max-w-7xl mx-auto px-5 pb-10">
           <h2 className="text-2xl font-bold text-white mb-4">Production</h2>
@@ -347,11 +342,9 @@ export default async function MoviePage({ params }) {
                   key={company.id}
                   className="flex items-center gap-2 bg-white/5 border border-light-100/10 rounded-xl px-4 py-2"
                 >
-                  <Image
+                  <img
                     src={`https://image.tmdb.org/t/p/w92${company.logo_path}`}
                     alt={company.name}
-                    width={20}
-                    height={20}
                     className="h-5 object-contain brightness-200 invert"
                   />
                   <span className="text-light-200 text-sm">{company.name}</span>
@@ -361,7 +354,7 @@ export default async function MoviePage({ params }) {
         </section>
       )}
 
-      {/* ── Similar Movies Footer ── */}
+      {/* Similar Movies Footer */}
       {similarMovies.length > 0 && (
         <footer className="border-t border-light-100/10 bg-dark-100/40 mt-6">
           <div className="max-w-7xl mx-auto px-5 py-12">
