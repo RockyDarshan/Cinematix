@@ -144,7 +144,7 @@ export default async function MoviePage({ params }) {
               src={
                 movie.poster_path
                   ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                  : "/hero-bg.png"
+                  : "/.png"
               }
               alt={movie.title}
               width={256}
@@ -312,7 +312,7 @@ export default async function MoviePage({ params }) {
                     src={
                       actor.profile_path
                         ? `https://image.tmdb.org/t/p/w185${actor.profile_path}`
-                        : "/hero-bg.png"
+                        : "/H4.png"
                     }
                     alt={actor.name}
                     className="w-full h-full object-cover"

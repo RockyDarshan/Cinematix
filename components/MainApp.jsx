@@ -174,7 +174,7 @@ const MainApp = () => {
                       src={movie.poster_url}
                       alt={movie.searchTerm}
                       onError={(e) => {
-                        e.target.src = "/hero-bg.png";
+                        e.target.src = "/H4.png";
                       }}
                     />
                   </li>

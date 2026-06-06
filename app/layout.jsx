@@ -4,6 +4,10 @@ import { AuthProvider } from '../contexts/AuthContext';
 export const metadata = {
   title: 'MovieVerse',
   description: 'Find Movies You\'ll Enjoy Without the Hassle',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
 };
 
 export default function RootLayout({ children }) {

@@ -94,17 +94,8 @@ const Search = ({ searchTerm, setSearchTerm, skipMovieFetch }) => {
             <li
               key={movie.id}
               onClick={() => handleSuggestionClick(movie)}
-              className="flex items-center gap-3 px-4 py-3 hover:bg-light-100/5 cursor-pointer transition-colors border-b border-light-100/5 last:border-0"
+              className="flex items-center justify-between px-4 py-3 hover:bg-light-100/5 cursor-pointer transition-colors border-b border-light-100/5 last:border-0"
             >
-              <img
-                src={
-                  movie.poster_path
-                    ? `https://image.tmdb.org/t/p/w92${movie.poster_path}`
-                    : "/hero-bg.png"
-                }
-                alt={movie.title}
-                className="w-8 h-12 object-cover rounded shrink-0"
-              />
               <div className="min-w-0 flex-1 flex flex-col">
                 <p className="text-white text-sm font-medium truncate">
                   {movie.title}
