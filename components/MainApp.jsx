@@ -119,7 +119,7 @@ const MainApp = () => {
         <nav className="flex justify-between items-center mb-4 mt-3">
           <div className="flex items-center space-x-4 ml-6">
             <h3 className="text-amber-400 font-sans font-bold text-4xl">
-              🍿MovieVerse
+              🍿Cinematix
             </h3>
           </div>
           <div className="flex items-center space-x-4">

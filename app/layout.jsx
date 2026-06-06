@@ -1,12 +1,12 @@
-import './globals.css';
-import { AuthProvider } from '../contexts/AuthContext';
+import "./globals.css";
+import { AuthProvider } from "../contexts/AuthContext";
 
 export const metadata = {
-  title: 'MovieVerse',
-  description: 'Find Movies You\'ll Enjoy Without the Hassle',
+  title: "Cinematix",
+  description: "Find Movies You'll Enjoy Without the Hassle",
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: "/logo.png",
+    apple: "/logo.png",
   },
 };
 
@@ -14,9 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          {children}
-        </AuthProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
