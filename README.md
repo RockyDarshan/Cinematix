@@ -21,9 +21,9 @@ Migrated from Vite + React to Next.js 15 with App Router.
    ```
 
 3. Copy your public assets from the old project into the `public/` folder:
-   - `hero-img.png`
+   - `BG.png`
    - `hero-bg.png`
-   - `no-movie.png`
+   - `H4.png`
    - `search.svg`
    - `star.svg`
 
